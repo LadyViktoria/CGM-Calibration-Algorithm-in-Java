@@ -19,7 +19,7 @@ public class Main {
 
     public static double onePointCalibration(double y, double x) {
         // one pint calibration
-        // m = ( y - b) / x
+        // slope. m = ( y - b) / x
         double b = 0;
         double m = 0;
         m = (y - b) / x;
@@ -29,8 +29,8 @@ public class Main {
 
     public static double twoPointCalibration(double[] y, double[] x) {
         // two point calibration
-        // m = ( y2 - y1 ) * ( x2 - x1 )
-        // b = y2 - mx2
+        // slope, m = ( y2 - y1 ) * ( x2 - x1 )
+        // intercept, b = y2 - mx2
         double b = 0;
         double m = 0;
         for (int i=0; i < 1; i++) {
