@@ -4,10 +4,10 @@ public class Main {
 
     public static void main(String[] args) {
         // example data
-        double[] sensorRawData = { 85, 80, 95, 150, 160, 180, 101 };
-        double[] bgMeterData = { 190, 180 };
+        double[] sensorRawData = { 85, 80, 95, 150, 160, 180, 151, 120 };
+        double[] bgMeterData = { 115, 112 };
         double[] weight = { 1, 1, 1};
-        double[] time = {1, 2, 3, 4, 5, 6, 7,};
+        double[] time = {1, 2, 3, 4, 5, 6, 7,8};
 
         double[] x = bgMeterData;
         double[] y = sensorRawData;
@@ -23,8 +23,7 @@ public class Main {
         // one pint calibration
         // slope. m = ( y - b) / x
         double b = 0;
-        double m = 0;
-        m = (y - b) / x;
+        double m = (y - b) / x;
         System.out.println("one point calibration for " + y + " bgMeterData: " + x + " m is: " + m);
         return m;
     }
@@ -33,13 +32,9 @@ public class Main {
         // two point calibration
         // slope, m = ( y2 - y1 ) * ( x2 - x1 )
         // intercept, b = y2 - mx2
-        double b = 0;
-        double m = 0;
-        for (int i=0; i < 1; i++) {
-            m=(getMax(y[0], y[1]) - getMin(y[0], y[1])) * (getMax(x[0], x[1]) - getMin(x[0], x[1]));
-            b= getMax(y[0], y[1]) - m * getMax(x[0], x[1]);
-            System.out.println("two point calibration for " + y[0] + " m is " + m + " b is " + b);
-        }
+        double m=(getMax(y[0], y[1]) - getMin(y[0], y[1])) * (getMax(x[0], x[1]) - getMin(x[0], x[1]));
+        double b= getMax(y[0], y[1]) - m * getMax(x[0], x[1]);
+        System.out.println("two point calibration for " + y[0] + " m is " + m + " b is " + b);
         return m;
     }
 
