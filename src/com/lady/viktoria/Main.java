@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         // example data
-        double[] sensorRawData = { 80, 85, 95 };
+        double[] sensorRawData = { 85, 80, 95 };
         double[] bgMeterData = { 190, 180 };
         double[] weight = { 1, 1, 1};
 
@@ -35,7 +35,7 @@ public class Main {
         double m = 0;
         for (int i=0; i < 1; i++) {
             m=(getMax(y[0], y[1]) - getMin(y[0], y[1])) * (getMax(x[0], x[1]) - getMin(x[0], x[1]));
-            b= y[1] - m * x[1];
+            b= getMax(y[0], y[1]) - m * getMax(x[0], x[1]);
             System.out.println("two point calibration for " + y[0] + " m is " + m + " b is " + b);
         }
         return m;
