@@ -4,15 +4,17 @@ public class Main {
 
     public static void main(String[] args) {
         // example data
-        double[] sensorRawData = { 85, 80, 95 };
+        double[] sensorRawData = { 85, 80, 95, 150, 160, 180, 101 };
         double[] bgMeterData = { 190, 180 };
         double[] weight = { 1, 1, 1};
+        double[] time = {1, 2, 3, 4, 5, 6, 7,};
 
         double[] x = bgMeterData;
         double[] y = sensorRawData;
 
         onePointCalibration(y[0], x[0]);
         twoPointCalibration(y,x);
+        regression(y, time,twoPointCalibration(y,x), 1);
     }
 
 
@@ -42,14 +44,14 @@ public class Main {
     }
 
 
-    public static double regression(double[] y, double[] x, double m, double b, double[] e) {
+    public static void regression(double[] y, double[] x, double slope, double intercept) {
         //yi=mxi+b+ei,
         for (int i=0; i < y.length; i++) {
-            y[i] = m * x[i] + b + e[i];
-            System.out.println("regression with stdError " + y[i] + " error is " + e[i]);
-            return y[i];
+            double[] e = {y[i], x[i]};
+            double error = populationStandardDeviation(e);
+                    y[i] = slope * x[i] + intercept + error;
+            System.out.println("regression y= " + y[i] + " error is " + error);
         }
-        return m;
     }
 
 
